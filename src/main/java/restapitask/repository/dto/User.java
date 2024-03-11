@@ -1,4 +1,4 @@
-package p1.repository.dto;
+package restapitask.repository.dto;
 
 import jakarta.persistence.*;
 import lombok.Data;

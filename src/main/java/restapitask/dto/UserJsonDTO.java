@@ -1,4 +1,4 @@
-package p1.dto;
+package restapitask.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

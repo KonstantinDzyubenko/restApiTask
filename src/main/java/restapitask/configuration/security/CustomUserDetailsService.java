@@ -1,12 +1,12 @@
-package p1.configuration.security;
+package restapitask.configuration.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import p1.repository.UserRepository;
-import p1.repository.dto.User;
+import restapitask.repository.UserRepository;
+import restapitask.repository.dto.User;
 
 import java.util.Optional;
 

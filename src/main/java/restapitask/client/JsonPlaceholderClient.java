@@ -1,11 +1,11 @@
-package p1.client;
+package restapitask.client;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import p1.dto.AlbumJsonDTO;
-import p1.dto.PostJsonDTO;
-import p1.dto.UserJsonDTO;
+import restapitask.dto.AlbumJsonDTO;
+import restapitask.dto.PostJsonDTO;
+import restapitask.dto.UserJsonDTO;
 
 @Component
 public class JsonPlaceholderClient {
@@ -61,27 +61,27 @@ public class JsonPlaceholderClient {
         restTemplate.put(urlTemplate + "/posts/" + id, post);
     }
 
-//    public PostJsonDTO[] getAllPosts() {
-//        return restTemplate.getForObject(urlTemplate + "/posts/", PostJsonDTO[].class);
-//    }
-//
-//    public PostJsonDTO getPostById(int id) {
-//        return restTemplate.getForObject(urlTemplate + "/posts/" + id, PostJsonDTO.class);
-//    }
-//
-//    public PostJsonDTO[] getPostsByUserId(int userId) {
-//        return restTemplate.getForObject(urlTemplate + "/users/" + userId + "/posts/", PostJsonDTO[].class);
-//    }
-//
-//    public void deletePost(int id) {
-//        restTemplate.delete(urlTemplate + "/posts/" + id);
-//    }
-//
-//    public PostJsonDTO createPost(PostJsonDTO post) {
-//        return restTemplate.postForObject(urlTemplate + "/posts/", post, PostJsonDTO.class);
-//    }
-//
-//    public void updatePost(PostJsonDTO post, int id) {
-//        restTemplate.put(urlTemplate + "/posts/" + id, post);
-//    }
+    public AlbumJsonDTO[] getAllAlbums() {
+        return restTemplate.getForObject(urlTemplate + "/albums/", AlbumJsonDTO[].class);
+    }
+
+    public AlbumJsonDTO getAlbumById(int id) {
+        return restTemplate.getForObject(urlTemplate + "/albums/" + id, AlbumJsonDTO.class);
+    }
+
+    public AlbumJsonDTO[] getAlbumsByUserId(int userId) {
+        return restTemplate.getForObject(urlTemplate + "/users/" + userId + "/albums/", AlbumJsonDTO[].class);
+    }
+
+    public void deleteAlbum(int id) {
+        restTemplate.delete(urlTemplate + "/albums/" + id);
+    }
+
+    public AlbumJsonDTO createAlbum(AlbumJsonDTO album) {
+        return restTemplate.postForObject(urlTemplate + "/albums/", album, AlbumJsonDTO.class);
+    }
+
+    public void updateAlbum(AlbumJsonDTO album, int id) {
+        restTemplate.put(urlTemplate + "/albums/" + id, album);
+    }
 }

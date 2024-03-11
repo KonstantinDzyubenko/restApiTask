@@ -1,4 +1,4 @@
-package p1.configuration.security;
+package restapitask.configuration.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
