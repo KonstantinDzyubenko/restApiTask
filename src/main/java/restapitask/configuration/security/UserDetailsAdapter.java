@@ -10,7 +10,7 @@ public class UserDetailsAdapter {
         return new User(
                         userEntity.getLogin(),
                         userEntity.getPassword(),
-                        userEntity.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getRole())).toList()
+                        userEntity.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getRole().name())).toList()
                 );
     }
 }

@@ -2,6 +2,7 @@ package restapitask.management.repository.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import restapitask.configuration.security.Role;
 
 @Data
 @Entity
@@ -14,6 +15,7 @@ public class RoleEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
     @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
 
