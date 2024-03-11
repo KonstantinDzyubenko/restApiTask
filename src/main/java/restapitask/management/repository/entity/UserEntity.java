@@ -1,15 +1,14 @@
-package restapitask.repository.dto;
+package restapitask.management.repository.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
 @Table(name = "tb_users")
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -17,6 +16,6 @@ public class User {
     private String login;
     @Column(name = "password")
     private String password;
-    @OneToMany(mappedBy = "user")
-    private List<Role> roles;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<RoleEntity> roles;
 }

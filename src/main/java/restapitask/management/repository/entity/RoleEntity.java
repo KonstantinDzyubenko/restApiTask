@@ -1,4 +1,4 @@
-package restapitask.repository.dto;
+package restapitask.management.repository.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -6,13 +6,14 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "tb_roles")
-public class Role {
+public class RoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private UserEntity user;
     @Column(name = "role")
     private String role;
 }
+

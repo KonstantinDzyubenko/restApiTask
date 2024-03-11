@@ -5,8 +5,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import restapitask.repository.UserRepository;
-import restapitask.repository.dto.User;
+import restapitask.management.repository.UserRepository;
+import restapitask.management.repository.entity.UserEntity;
 
 import java.util.Optional;
 
@@ -17,8 +17,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByLogin(username);
+        Optional<UserEntity> user = userRepository.findByLogin(username);
 
-        return user.map(CustomUserDetails::new).orElseThrow(() -> new UsernameNotFoundException("user " + username + " not found"));
+        return user.map(UserDetailsAdapter::userToDetails).orElseThrow(() -> new UsernameNotFoundException("user " + username + " not found"));
     }
 }
