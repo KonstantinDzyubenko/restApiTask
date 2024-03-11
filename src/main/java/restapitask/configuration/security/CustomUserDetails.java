@@ -6,7 +6,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import restapitask.repository.dto.User;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 @ToString
@@ -18,7 +17,7 @@ public class CustomUserDetails implements UserDetails {
     public CustomUserDetails(User user) {
         username = user.getLogin();
         password = user.getPassword();
-        authorities = Arrays.stream(user.getRole().split(", ")).map(SimpleGrantedAuthority::new).toList();
+        authorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getRole())).toList();
     }
 
     @Override

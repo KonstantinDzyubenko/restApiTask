@@ -3,6 +3,9 @@ package restapitask.repository.dto;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+import java.util.Set;
+
 @Data
 @Entity
 @Table(name = "tb_users")
@@ -14,6 +17,6 @@ public class User {
     private String login;
     @Column(name = "password")
     private String password;
-    @Column(name = "role")
-    private String role;
+    @OneToMany(mappedBy = "user")
+    private List<Role> roles;
 }
