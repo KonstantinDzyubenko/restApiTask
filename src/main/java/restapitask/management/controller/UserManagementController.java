@@ -10,7 +10,7 @@ import restapitask.management.service.UserManagementService;
 
 @RestController
 @RequiredArgsConstructor
-public class ApplicationUserController {
+public class UserManagementController {
     private final UserManagementService service;
 
     @PostMapping("/management/users")
