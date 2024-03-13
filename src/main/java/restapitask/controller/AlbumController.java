@@ -33,8 +33,8 @@ public class AlbumController {
 
     @DeleteMapping("/api/albums/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_ALBUMS_EDITOR')")
-    public void deleteAlbum(@PathVariable int id) {
-        service.deleteAlbum(id);
+    public String deleteAlbum(@PathVariable int id) {
+        return service.deleteAlbum(id);
     }
 
     @PostMapping("/api/albums")

@@ -33,8 +33,8 @@ public class PostController {
 
     @DeleteMapping("/api/posts/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_POSTS_EDITOR')")
-    public void deletePost(@PathVariable int id) {
-        service.deletePost(id);
+    public String deletePost(@PathVariable int id) {
+        return service.deletePost(id);
     }
 
     @PostMapping("/api/posts")

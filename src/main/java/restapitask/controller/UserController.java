@@ -27,8 +27,8 @@ public class UserController {
 
     @DeleteMapping("/api/users/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USERS_EDITOR')")
-    public void deleteUser(@PathVariable int id) {
-        service.deleteUser(id);
+    public String deleteUser(@PathVariable int id) {
+        return service.deleteUser(id);
     }
 
     @PostMapping("/api/users")

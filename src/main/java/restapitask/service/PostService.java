@@ -31,8 +31,8 @@ public class PostService {
     }
 
     @CacheEvict(value = "posts", key = "#id")
-    public void deletePost(int id) {
-        client.deletePost(id);
+    public String deletePost(int id) {
+        return client.deletePost(id);
     }
 
     @CachePut(value = "posts", key = "#result.id")
@@ -42,7 +42,6 @@ public class PostService {
 
     @CachePut(value = "posts", key = "#id")
     public PostJsonDTO updatePost(PostJsonDTO post, int id) {
-        client.updatePost(post, id);
-        return post;
+        return client.updatePost(post, id);
     }
 }

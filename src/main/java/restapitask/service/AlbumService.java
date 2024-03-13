@@ -31,8 +31,8 @@ public class AlbumService {
     }
 
     @CacheEvict(value = "albums", key = "#id")
-    public void deleteAlbum(int id) {
-        client.deleteAlbum(id);
+    public String deleteAlbum(int id) {
+        return client.deleteAlbum(id);
     }
 
     @CachePut(value = "albums", key = "#result.id")
@@ -42,7 +42,6 @@ public class AlbumService {
 
     @CachePut(value = "albums", key = "#id")
     public AlbumJsonDTO updateAlbum(AlbumJsonDTO album, int id) {
-        client.updateAlbum(album, id);
-        return album;
+        return client.updateAlbum(album, id);
     }
 }

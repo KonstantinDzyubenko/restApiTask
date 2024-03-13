@@ -26,8 +26,8 @@ public class UserService {
     }
 
     @CacheEvict(value = "users", key = "#id")
-    public void deleteUser(int id) {
-        client.deleteUser(id);
+    public String deleteUser(int id) {
+        return client.deleteUser(id);
     }
 
     @CachePut(value = "users", key = "#result.id")
@@ -37,7 +37,6 @@ public class UserService {
 
     @CachePut(value = "users", key = "#id")
     public UserJsonDTO updateUser(UserJsonDTO user, int id) {
-        client.updateUser(user, id);
-        return user;
+        return client.updateUser(user, id);
     }
 }
