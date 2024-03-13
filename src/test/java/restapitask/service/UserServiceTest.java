@@ -76,6 +76,7 @@ class UserServiceTest {
         when(client.createUser(any())).thenReturn(createUser());
         UserJsonDTO updatedUser = createUser();
         updatedUser.setName("updated");
+        when(client.updateUser(any(), eq(1))).thenReturn(updatedUser);
         underTest.updateUser(updatedUser, 1);
         assertEquals(updatedUser, underTest.getUserById(1));
         verify(client, never()).getUserById(eq(1));

@@ -88,6 +88,7 @@ public class PostServiceTest {
         when(client.createPost(any())).thenReturn(createPost());
         PostJsonDTO updatedPost = createPost();
         updatedPost.setTitle("updated");
+        when(client.updatePost(any(), eq(1))).thenReturn(updatedPost);
         underTest.updatePost(updatedPost, 1);
         assertEquals(updatedPost, underTest.getPostById(1));
         verify(client, never()).getPostById(eq(1));

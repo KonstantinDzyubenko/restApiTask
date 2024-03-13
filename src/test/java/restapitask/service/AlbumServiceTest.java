@@ -16,11 +16,10 @@ import restapitask.dto.AlbumJsonDTO;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.never;
 
 @SpringBootTest(classes = AlbumService.class)
 @ContextConfiguration(classes = AlbumServiceTest.Config.class)
@@ -89,6 +88,7 @@ class AlbumServiceTest {
         when(client.createAlbum(any())).thenReturn(createAlbum());
         AlbumJsonDTO updatedAlbum = createAlbum();
         updatedAlbum.setTitle("updated");
+        when(client.updateAlbum(any(), eq(1))).thenReturn(updatedAlbum);
         underTest.updateAlbum(updatedAlbum, 1);
         assertEquals(updatedAlbum, underTest.getAlbumById(1));
         verify(client, never()).getAlbumById(eq(1));
