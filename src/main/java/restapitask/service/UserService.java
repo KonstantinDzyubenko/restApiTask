@@ -8,13 +8,15 @@ import org.springframework.stereotype.Component;
 import restapitask.client.JsonPlaceholderClient;
 import restapitask.dto.UserJsonDTO;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class UserService {
     private final JsonPlaceholderClient client;
 
     @Cacheable(value = "allUsers")
-    public UserJsonDTO[] getAllUsers() {
+    public List<UserJsonDTO> getAllUsers() {
         return client.getAllUsers();
     }
 

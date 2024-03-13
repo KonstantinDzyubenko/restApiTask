@@ -8,13 +8,15 @@ import org.springframework.stereotype.Component;
 import restapitask.client.JsonPlaceholderClient;
 import restapitask.dto.PostJsonDTO;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class PostService {
     private final JsonPlaceholderClient client;
 
     @Cacheable(value = "allPosts")
-    public PostJsonDTO[] getAllPosts() {
+    public List<PostJsonDTO> getAllPosts() {
         return client.getAllPosts();
     }
 
@@ -24,7 +26,7 @@ public class PostService {
     }
 
     @Cacheable(value = "postsByUserId", key="#userId")
-    public PostJsonDTO[] getPostsByUserId(int userId) {
+    public List<PostJsonDTO> getPostsByUserId(int userId) {
         return client.getPostsByUserId(userId);
     }
 

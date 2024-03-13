@@ -1,8 +1,6 @@
 package restapitask.configuration.security;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -18,12 +16,13 @@ import restapitask.management.repository.entity.UserEntity;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static restapitask.configuration.security.Role.ROLE_ADMIN;
 
 @ExtendWith(MockitoExtension.class)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CustomUserDetailsServiceTest {
     @Mock
     private UserRepository userRepository;
@@ -33,16 +32,16 @@ class CustomUserDetailsServiceTest {
 
     @Test
     public void successfulSearchTest() {
-        when(userRepository.findByLogin(any())).thenReturn(Optional.of(createUserEntity()));
+        when(userRepository.findByLogin(eq("login"))).thenReturn(Optional.of(createUserEntity()));
         UserDetails userDetails = underTest.loadUserByUsername("login");
-        Assertions.assertEquals(createUserDetails(), userDetails);
+        assertEquals(createUserDetails(), userDetails);
     }
 
     @Test
     public void userNotFoundTest() {
-        when(userRepository.findByLogin(any())).thenReturn(Optional.empty());
-        UsernameNotFoundException e = Assertions.assertThrows(UsernameNotFoundException.class, () -> underTest.loadUserByUsername("login"));
-        Assertions.assertEquals("user login not found", e.getMessage());
+        when(userRepository.findByLogin(eq("login"))).thenReturn(Optional.empty());
+        UsernameNotFoundException e = assertThrows(UsernameNotFoundException.class, () -> underTest.loadUserByUsername("login"));
+        assertEquals("user login not found", e.getMessage());
     }
 
     private UserEntity createUserEntity() {

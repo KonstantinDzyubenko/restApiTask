@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import restapitask.dto.PostJsonDTO;
 import restapitask.service.PostService;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class PostController {
@@ -13,7 +15,7 @@ public class PostController {
 
     @GetMapping("/api/posts")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_POSTS_VIEWER')")
-    public PostJsonDTO[] getAllPosts() {
+    public List<PostJsonDTO> getAllPosts() {
         return service.getAllPosts();
     }
 
@@ -25,7 +27,7 @@ public class PostController {
 
     @GetMapping("/api/users/{userId}/posts")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_POSTS_VIEWER')")
-    public PostJsonDTO[] getPostsByUserId(@PathVariable int userId) {
+    public List<PostJsonDTO> getPostsByUserId(@PathVariable int userId) {
         return service.getPostsByUserId(userId);
     }
 

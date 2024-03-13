@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import restapitask.dto.AlbumJsonDTO;
 import restapitask.service.AlbumService;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class AlbumController {
@@ -13,7 +15,7 @@ public class AlbumController {
 
     @GetMapping("/api/albums")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_ALBUMS_VIEWER')")
-    public AlbumJsonDTO[] getAllAlbums() {
+    public List<AlbumJsonDTO> getAllAlbums() {
         return service.getAllAlbums();
     }
 
@@ -25,7 +27,7 @@ public class AlbumController {
 
     @GetMapping("/api/users/{userId}/albums")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_ALBUMS_VIEWER')")
-    public AlbumJsonDTO[] getAlbumsByUserId(@PathVariable int userId) {
+    public List<AlbumJsonDTO> getAlbumsByUserId(@PathVariable int userId) {
         return service.getAlbumsByUserId(userId);
     }
 

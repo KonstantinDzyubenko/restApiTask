@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import restapitask.dto.UserJsonDTO;
 import restapitask.service.UserService;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -13,7 +15,7 @@ public class UserController {
 
     @GetMapping("/api/users")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USERS_VIEWER')")
-    public UserJsonDTO[] getAllUsers() {
+    public List<UserJsonDTO> getAllUsers() {
         return service.getAllUsers();
     }
 

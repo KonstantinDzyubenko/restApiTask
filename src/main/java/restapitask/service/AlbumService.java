@@ -8,13 +8,15 @@ import org.springframework.stereotype.Component;
 import restapitask.client.JsonPlaceholderClient;
 import restapitask.dto.AlbumJsonDTO;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class AlbumService {
     private final JsonPlaceholderClient client;
 
     @Cacheable(value = "allAlbums")
-    public AlbumJsonDTO[] getAllAlbums() {
+    public List<AlbumJsonDTO> getAllAlbums() {
         return client.getAllAlbums();
     }
 
@@ -24,7 +26,7 @@ public class AlbumService {
     }
 
     @Cacheable(value = "albumsByUserId", key="#userId")
-    public AlbumJsonDTO[] getAlbumsByUserId(int userId) {
+    public List<AlbumJsonDTO> getAlbumsByUserId(int userId) {
         return client.getAlbumsByUserId(userId);
     }
 

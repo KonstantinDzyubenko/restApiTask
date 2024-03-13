@@ -7,6 +7,9 @@ import restapitask.dto.AlbumJsonDTO;
 import restapitask.dto.PostJsonDTO;
 import restapitask.dto.UserJsonDTO;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Component
 public class JsonPlaceholderClient {
     private final String urlTemplate;
@@ -17,8 +20,8 @@ public class JsonPlaceholderClient {
         this.restTemplate = restTemplate;
     }
 
-    public UserJsonDTO[] getAllUsers() {
-        return restTemplate.getForObject(urlTemplate + "/users/", UserJsonDTO[].class);
+    public List<UserJsonDTO> getAllUsers() {
+        return Arrays.asList(restTemplate.getForObject(urlTemplate + "/users/", UserJsonDTO[].class));
     }
 
     public UserJsonDTO getUserById(int id) {
@@ -37,16 +40,16 @@ public class JsonPlaceholderClient {
         restTemplate.put(urlTemplate + "/users/" + id, user);
     }
 
-    public PostJsonDTO[] getAllPosts() {
-        return restTemplate.getForObject(urlTemplate + "/posts/", PostJsonDTO[].class);
+    public List<PostJsonDTO> getAllPosts() {
+        return Arrays.asList(restTemplate.getForObject(urlTemplate + "/posts/", PostJsonDTO[].class));
     }
 
     public PostJsonDTO getPostById(int id) {
         return restTemplate.getForObject(urlTemplate + "/posts/" + id, PostJsonDTO.class);
     }
 
-    public PostJsonDTO[] getPostsByUserId(int userId) {
-        return restTemplate.getForObject(urlTemplate + "/users/" + userId + "/posts/", PostJsonDTO[].class);
+    public List<PostJsonDTO> getPostsByUserId(int userId) {
+        return Arrays.asList(restTemplate.getForObject(urlTemplate + "/users/" + userId + "/posts/", PostJsonDTO[].class));
     }
 
     public void deletePost(int id) {
@@ -61,16 +64,16 @@ public class JsonPlaceholderClient {
         restTemplate.put(urlTemplate + "/posts/" + id, post);
     }
 
-    public AlbumJsonDTO[] getAllAlbums() {
-        return restTemplate.getForObject(urlTemplate + "/albums/", AlbumJsonDTO[].class);
+    public List<AlbumJsonDTO> getAllAlbums() {
+        return Arrays.asList(restTemplate.getForObject(urlTemplate + "/albums/", AlbumJsonDTO[].class));
     }
 
     public AlbumJsonDTO getAlbumById(int id) {
         return restTemplate.getForObject(urlTemplate + "/albums/" + id, AlbumJsonDTO.class);
     }
 
-    public AlbumJsonDTO[] getAlbumsByUserId(int userId) {
-        return restTemplate.getForObject(urlTemplate + "/users/" + userId + "/albums/", AlbumJsonDTO[].class);
+    public List<AlbumJsonDTO> getAlbumsByUserId(int userId) {
+        return Arrays.asList(restTemplate.getForObject(urlTemplate + "/users/" + userId + "/albums/", AlbumJsonDTO[].class));
     }
 
     public void deleteAlbum(int id) {
