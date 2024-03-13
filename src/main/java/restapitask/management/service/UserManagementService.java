@@ -3,6 +3,7 @@ package restapitask.management.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import restapitask.configuration.security.Role;
 import restapitask.management.controller.dto.UserDTO;
 import restapitask.management.repository.RoleRepository;
@@ -19,6 +20,7 @@ public class UserManagementService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder encoder;
 
+    @Transactional
     public void createUser(UserDTO user) {
         UserEntity userEntity = new UserEntity();
         userEntity.setLogin(user.getLogin());
